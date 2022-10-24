@@ -26,6 +26,41 @@ sequenceDiagram
 - Two Okta tenants
 - `tfenv` Optional, but recommended to manage different version of the `terraform` cli.
 
+## Getting started
+
+### Set up your `okta.auto.tfvars` file with Okta API Tokens.
+
+> NOTE: Assuming you have already created or have to two Okta tenants
+
+- `cp okta.auto.tfvars-sample okta.auto.tfvars`
+- Get your API Token and past it into the `okta.auto.tfvars` file.
+
+    ```vim
+    # Inside the okta.auto.tfvars file.
+    okta_spoke_org_name  = "narisaklabs-spoke"
+    okta_spoke_base_url  = "oktapreview.com"
+    okta_spoke_api_token = "00Y...kx8"
+
+    okta_hub_org_name  = "narisaklabs-hub"
+    okta_hub_base_url  = "oktapreview.com"
+    okta_hub_api_token = "00K...VuJ"
+    ```
+
+- Provison your Okta tenants.
+
+    ```cli
+    $ terraform init
+    $ terraform validate
+    $ terraform plan
+    $ terraform apply -auto-approve # if you do not want to be prompted by the cli.
+    ```
+
+- Cleanup.
+
+  ```cli
+  $ terraform destroy -auto-approve # If you do not want to be prompted by the cli.
+  ```
+
 ## Take away
 
 - Hub configuration

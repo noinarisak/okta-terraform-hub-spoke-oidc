@@ -1,0 +1,7 @@
+okta_spoke_org_name  = "_SPOKE_ORG_NAME_"
+okta_spoke_base_url  = "_SPOKE_TENANT_BASE_URL_"
+okta_spoke_api_token = "_SPOKE_YOUR_API_TOKEN_"
+
+okta_hub_org_name  = "_HUB_ORG_NAME_"
+okta_hub_base_url  = "_HUB_TENANT_BASE_URL_"
+okta_hub_api_token = "_HUB_TENANT_YOUR_API_TOKEN_"
