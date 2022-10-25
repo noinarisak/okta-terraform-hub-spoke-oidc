@@ -39,6 +39,15 @@ module "spoke" {
   spoke_api_token     = var.okta_spoke_api_token
   spoke_oidc_app_name = "Spoke IDP TF"
 }
+
+# Create testenv that would be consume by the React Application located in react-app folder.
+# NOTE: Performing 'terraform destory' will remove the testenv, also.
+resource "local_file" "react_app_testenv" {
+  content = templatefile("${path.module}/react-app-testenv.tftpl", { "HUB_OKTA_SPA_CLIENT_ID" = module.hub.spa_application_client_id,
+                                                                     "HUB_OKTA_ISSUER" = module.hub.spa_application_issuer })
+  filename = "${path.module}/react-app/testenv"
+}
+
 terraform {
   required_version = "= 1.3.3"
 }

@@ -14,7 +14,7 @@ resource "okta_app_oauth" "spa_application" {
   login_mode                 = "DISABLED"
   pkce_required              = "true"
   post_logout_redirect_uris  = ["http://localhost:8080"]
-  redirect_uris              = ["http://localhost:8080/login/callback", "https://narisaklabs-spoke.okta.com/oauth2/v1/authorize/callback"]
+  redirect_uris              = ["http://localhost:8080/login/callback"]
   response_types             = ["code"]
   status                     = "ACTIVE"
   token_endpoint_auth_method = "none"
