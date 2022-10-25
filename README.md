@@ -19,9 +19,9 @@ sequenceDiagram
 
 ## Requirements
 
-- Terraform v1.3.3
-- Okta Provider v3.37.0
-- Two Okta tenants
+- Terraform v1.3.3.
+- Okta Provider v3.37.0.
+- Two Okta tenants, one representing the Hub and the other representing the Spoke.
 - `tfenv` Optional, but recommended to manage different version of the `terraform` cli.
 
 ## Getting started
@@ -51,8 +51,12 @@ sequenceDiagram
     $ terraform validate
     $ terraform plan
     $ terraform apply -auto-approve     # '-auto-approve' flag, if you do not want to be prompted by the cli.
+    ```
 
-    # One liner
+    or
+
+    ```cli
+    # One-liner
     $ terraform init && terraform validate && terraform plan && terraform apply -auto-approve
     ```
 
@@ -64,4 +68,4 @@ sequenceDiagram
 
 ## Resources
 
-- TODO.
+- [Okta to Okta: Enterprise Identity Provider](https://developer.okta.com/docs/guides/add-an-external-idp/oktatookta/main/)
