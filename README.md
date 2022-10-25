@@ -8,9 +8,6 @@ Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 ```mermaid
 sequenceDiagram
     actor Alice
-    actor SPA
-    actor Hub(SP)
-    actor Spoke(IDP)
     Alice->>SPA: Launch the SPA in her favorite browser.
     SPA->>Hub (SP): Request is forward to the Service Provider (Hub).
     Hub(SP)->>Spoke(IDP): Service Provider redirects to the Identity Provider
