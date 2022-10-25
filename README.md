@@ -9,11 +9,12 @@ Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 sequenceDiagram
     actor Alice
     Alice->>SPA: Launch the SPA in her favorite browser.
-    SPA->>Hub (SP): Request is forward to the Service Provider (Hub).
-    Hub(SP)->>Spoke(IDP): Service Provider redirects to the Identity Provider
-    Spoke->>Alice: Prompt for credentials
-    Spoke(IDP)->>Hub(SP): Relay back.
-    Hub(SP)->>SPA: Finally Alice is logged to the SPA.
+    SPA->>Hub(SP): Request is forward to the Service Provider (Hub).
+    Hub(SP)->>Spoke(IDP): Service Provider redirects to the Identity Provider.
+    Spoke(IDP)->>Alice: Prompt for credentials.
+    Alice->>Spoke(IDP): Authenicate Alice credentials.
+    Spoke(IDP)->>Hub(SP): Relay back / Callbacks.
+    Hub(SP)->>SPA: Finally Alice is logged to the SPA with JWT (access/id tokens).
 ```
 
 ## Requirements
@@ -43,31 +44,24 @@ sequenceDiagram
     okta_hub_api_token = "00K...VuJ"
     ```
 
-- Provison your Okta tenants.
+- Provision your Okta tenants.
 
     ```cli
     $ terraform init
     $ terraform validate
     $ terraform plan
-    $ terraform apply -auto-approve # if you do not want to be prompted by the cli.
+    $ terraform apply -auto-approve     # '-auto-approve' flag, if you do not want to be prompted by the cli.
+
+    # One liner
+    $ terraform init && terraform validate && terraform plan && terraform apply -auto-approve
     ```
 
 - Cleanup.
 
   ```cli
-  $ terraform destroy -auto-approve # If you do not want to be prompted by the cli.
+  $ terraform destroy -auto-approve # '-auto-approve' flag, if you do not want to be prompted by the cli.
   ```
 
-## Take away
+## Resources
 
-- Hub configuration
-- Spoke configuration
-- React SPA with Redirect Model flow
-
-```mermaid
-person -> spoke (idp) --> hub (sp)
-```
-
-# TODO
-
-- ~~Convert the Hub okta resources to HCL~~
+- TODO.
