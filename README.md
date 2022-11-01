@@ -1,6 +1,7 @@
 # Okta Terraform Hub and Spoke with OpenId Connect
 
-Terraform Hub and Spoke with OIDC demo since it is pretty complex step between to Okta tenants, one acting as
+Terraform Hub and Spoke with OIDC is my attempt reduce the complexity when it comes to the Hub & Spoke architecture and
+configuration particular between to Okta tenants, one acting as
 Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 
 ## End user flow sequence diagram
@@ -69,10 +70,18 @@ sequenceDiagram
 - Test it!
 
   ```cli
-  $ cd react-app
-  $ cat testenv  # Display the configuration value.
-  $ npm install
-  $ npm start
+  cat react-app/testenv  # Display the configuration value.
+  # ie.
+  # ISSUER=https://narisaklabs-hub.oktapreview.com/oauth2/default
+  # CLIENT_ID=0oa...p1d7
+
+  # Navigate to react-app/okta-hosted-login
+  cd react-app/okta-hosted-login
+  npm install
+  npm start
+
+  # Launch your favorite browser, ideally Incognito Mode.
+  open http:/localhost:8080
   ```
 
 - Cleanup.
