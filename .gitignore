@@ -1,7 +1,8 @@
 # Custom
 
 ### Ignore default environment variable file use by the sample react app ###
-react-app/testenv
+react-app/testenv*
+react-app/package-lock.json
 
 # End Custom
 
