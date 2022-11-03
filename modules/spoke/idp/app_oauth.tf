@@ -9,9 +9,7 @@ resource "okta_app_oauth" "web_application" {
   label                      = var.spoke_oidc_app_name
   login_mode                 = "DISABLED"
   post_logout_redirect_uris  = ["http://localhost:8080"]
-  # /todo: Delete the following line:
-  # redirect_uris              = ["http://localhost:8080/authorization-code/callback", "http://localhost:8080/login/callback", "https://narisaklabs-hub.oktapreview.com/oauth2/v1/authorize/callback"]
-  redirect_uris              = ["https://narisaklabs-hub.oktapreview.com/oauth2/v1/authorize/callback"]
+  redirect_uris              = var.spoke_web_redirect_uris
   response_types             = ["code"]
   status                     = "ACTIVE"
   token_endpoint_auth_method = "client_secret_basic"

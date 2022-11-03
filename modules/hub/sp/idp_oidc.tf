@@ -12,7 +12,7 @@ resource "okta_idp_oidc" "spoke_idp" {
   jwks_url              = var.hub_idp_oidc_jwks_url
   max_clock_skew        = "0"
   name                  = var.hub_idp_name
-  profile_master        = "false"
+  profile_master        = "true"
   provisioning_action   = "AUTO"
   scopes                = ["email", "openid", "profile"]
   subject_match_type    = "USERNAME"
