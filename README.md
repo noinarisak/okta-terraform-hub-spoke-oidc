@@ -4,6 +4,7 @@ Terraform Hub and Spoke with OIDC is my attempt reduce the complexity when it co
 configuration particular between to Okta tenants, one acting as
 Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 
+
 ## End user flow sequence diagram
 
 ```mermaid
@@ -89,6 +90,23 @@ sequenceDiagram
   ```cli
   $ terraform destroy -auto-approve # '-auto-approve' flag, if you do not want to be prompted by the cli.
   ```
+
+## Tips & Gotchas
+
+- On "`terraform destroy -auto-approve`" you get the following error.
+
+  ```bash
+  ...
+  module.hub.okta_app_oauth.spa_application: Destruction complete after 0s
+  ╷
+  │ Error: failed to delete user schema property favoriteColor: the API returned an error: Api validation failed: updateUserSchemas. Causes: errorSummary: Property favoriteColor cannot be deleted. It is used to populate oidc_client_8c73i16.favoriteColor., errorSummary: Property favoriteColor cannot be deleted. It is used to populate oidc_client_8c73i16.favoriteColor.
+  │
+  │
+  ╵
+  ...
+  ```
+
+  Re-execute "`terraform destroy -auto-approve`" should resolve it. There is race conditional that is tied to the custom schema and the mapping that is done on that custom schema attribute. Okta API endpoints, particularly when to HTTP DELETES calls are place into queue to be remove from the tenant.
 
 ## Resources
 
