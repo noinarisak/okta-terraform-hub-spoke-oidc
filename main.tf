@@ -6,7 +6,7 @@ variable "okta_spoke_org_name" {}
 variable "okta_spoke_base_url" {}
 variable "okta_spoke_api_token" {}
 
-# NOTE: Have not manually tested the with 'default' auth server. Requires create custom cliams on the Spoke auth server.
+# NOTE: Have not manually tested with 'default' auth server. Requires create custom cliams on the Spoke auth server.
 # Custom Authorization Server. ie. "default"
 # locals {
 #   spoke_root_url          = format("https://%s.%s", var.okta_spoke_org_name, var.okta_spoke_base_url)
@@ -28,7 +28,8 @@ locals {
 }
 
 locals {
-  hub_root_url = format("https://%s.%s", var.okta_hub_org_name, var.okta_hub_base_url)
+  hub_root_url              = format("https://%s.%s", var.okta_hub_org_name, var.okta_hub_base_url)
+  hub_redirect_uri_callback = format("%s/oauth2/v1/authorize/callback", local.hub_root_url)
 }
 
 module "hub" {
@@ -55,7 +56,7 @@ module "spoke" {
   spoke_api_token     = var.okta_spoke_api_token
   spoke_oidc_app_name = "Spoke IDP TF"
   spoke_web_redirect_uris = [
-    local.hub_root_url,
+    local.hub_redirect_uri_callback,
   ]
 }
 
