@@ -4,7 +4,7 @@ data "okta_policy" "idp_discovery_policy" {
   type = "IDP_DISCOVERY"
 }
 
-resource "okta_policy_rule_idp_discovery" "example" {
+resource "okta_policy_rule_idp_discovery" "spoke_idp_rule" {
   policy_id          = data.okta_policy.idp_discovery_policy.id
   name               = "Spoke Idp TF"
   idp_id             = okta_idp_oidc.spoke_idp.id
