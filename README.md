@@ -1,9 +1,9 @@
+
 # Okta Terraform Hub and Spoke with OpenId Connect
 
 Terraform Hub and Spoke with OIDC is my attempt reduce the complexity when it comes to the Hub & Spoke architecture and
 configuration particular between to Okta tenants, one acting as
 Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
-
 
 ## End user flow sequence diagram
 
@@ -14,8 +14,8 @@ sequenceDiagram
     SPA->>Hub(SP): Request is forward to the Service Provider (Hub).
     Hub(SP)->>Spoke(IDP): Service Provider redirects to the Identity Provider.
     Spoke(IDP)->>Alice: Prompt for credentials.
-    Alice->>Spoke(IDP): Authenicate Alice credentials.
-    Spoke(IDP)->>Hub(SP): Relay back / Callbacks.
+    Alice->>Spoke(IDP): Authenticate Alice credentials.
+    Spoke(IDP)->>Hub(SP): Relay back / Redirect / Callbacks.
     Hub(SP)->>SPA: Finally Alice is logged to the SPA with JWT (access/id tokens).
 ```
 
@@ -51,17 +51,17 @@ sequenceDiagram
 - Provision your Okta tenants.
 
     ```cli
-    $ terraform init
-    $ terraform validate
-    $ terraform plan
-    $ terraform apply -auto-approve     # '-auto-approve' flag, if you do not want to be prompted by the cli.
+    terraform init
+    terraform validate
+    terraform plan
+    terraform apply -auto-approve     # '-auto-approve' flag, if you do not want to be prompted by the cli.
     ```
 
     or
 
     ```cli
     # One-liner
-    $ terraform init && terraform validate && terraform plan && terraform apply -auto-approve
+    terraform init && terraform validate && terraform plan && terraform apply -auto-approve
     ```
 
 - Couple actions happen
@@ -85,10 +85,19 @@ sequenceDiagram
   open http:/localhost:8080
   ```
 
+  NOTE: I assume you have existing user account on the Spoke tenant.
+
+  1. Log in with user credentials.
+  2. See that Hub directs
+
 - Cleanup.
 
+  > NOTE: `-auto-approve` flag deactivate user interaction prompts.
+
+  > NOTE: `-parallelism=1` flag set one current process, by default terraform has 10 default process out of the box and we setting to `1` so destroy process will be atomic, i.e. order executions.
+
   ```cli
-  $ terraform destroy -auto-approve # '-auto-approve' flag, if you do not want to be prompted by the cli.
+  terraform destroy -auto-approve -parallelism=1
   ```
 
 ## Tips & Gotchas
@@ -107,6 +116,8 @@ sequenceDiagram
   ```
 
   Re-execute "`terraform destroy -auto-approve`" should resolve it. There is race conditional that is tied to the custom schema and the mapping that is done on that custom schema attribute. Okta API endpoints, particularly when to HTTP DELETES calls are place into queue to be remove from the tenant.
+
+- On "`terraform apply -auto-approve`" fails, perform `terraform refresh` and then `terraform apply -auto-approve`. Again due to the nature of Okta API endpoints are queue, ie HTTPPOST/PUT/DELETE calls are place on queue and the return HTTP 2XX could me the request has been received but the action may have not happen.
 
 ## Resources
 
