@@ -7,6 +7,10 @@ resource "okta_app_user_schema_property" "app_favortie_color" {
   description = "User Favorite Color"
   permissions = "READ_WRITE"
   scope       = "SELF"
+  # Chaining prevents API errors, due to how Okta API endpoints are not immediate.
+  depends_on = [
+    okta_app_user_schema_property.app_subscription_level
+  ]
 }
 
 resource "okta_app_user_schema_property" "app_subscription_level" {
@@ -29,6 +33,10 @@ resource "okta_app_user_schema_property" "idp_favortie_color" {
   permissions   = "READ_WRITE"
   scope         = "SELF"
   external_name = "favoriteColor"
+  # Chaining prevents API errors, due to how Okta API endpoints are not immediate.
+  depends_on = [
+    okta_app_user_schema_property.idp_subscription_level
+  ]
 }
 
 resource "okta_app_user_schema_property" "idp_subscription_level" {

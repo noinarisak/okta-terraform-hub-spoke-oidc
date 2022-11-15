@@ -6,6 +6,10 @@ resource "okta_app_user_schema_property" "favortie_color" {
   description = "User Favorite Color"
   permissions = "READ_WRITE"
   scope       = "SELF"
+
+  depends_on = [
+    okta_app_user_schema_property.subscription_level
+  ]
 }
 
 resource "okta_app_user_schema_property" "subscription_level" {
