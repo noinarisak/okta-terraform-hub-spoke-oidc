@@ -1,3 +1,8 @@
+data "okta_policy" "password_only" {
+  name = "Password only"
+  type = "ACCESS_POLICY"
+}
+
 resource "okta_app_oauth" "web_application" {
   auto_key_rotation          = "true"
   auto_submit_toolbar        = "false"
@@ -14,4 +19,5 @@ resource "okta_app_oauth" "web_application" {
   status                     = "ACTIVE"
   token_endpoint_auth_method = "client_secret_basic"
   type                       = "web"
+  authentication_policy      = data.okta_policy.password_only.id
 }

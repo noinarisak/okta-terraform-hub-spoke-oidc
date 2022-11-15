@@ -2,6 +2,11 @@ data "okta_auth_server" "authorization_server" {
   name = "default"
 }
 
+data "okta_policy" "password_only" {
+  name = "Password only"
+  type = "ACCESS_POLICY"
+}
+
 resource "okta_app_oauth" "spa_application" {
   auto_key_rotation          = "true"
   auto_submit_toolbar        = "false"
@@ -19,4 +24,5 @@ resource "okta_app_oauth" "spa_application" {
   status                     = "ACTIVE"
   token_endpoint_auth_method = "none"
   type                       = "browser"
+  authentication_policy      = data.okta_policy.password_only.id
 }
