@@ -126,7 +126,7 @@ sequenceDiagram
 
   Re-execute "`terraform destroy -auto-approve`" should resolve it. There is race conditional that is tied to the custom schema and the mapping that is done on that custom schema attribute. Okta API endpoints, particularly when to HTTP DELETES calls are place into queue to be remove from the tenant.
 
-- On "`terraform apply -auto-approve`" fails, perform `terraform refresh` and then `terraform apply -auto-approve`. Again due to the nature of Okta API endpoints are queue, ie HTTPPOST/PUT/DELETE calls are place on queue and the return HTTP 2XX could me the request has been received but the action may have not happen.
+- On "`terraform apply -auto-approve`" fails, perform `terraform refresh` and then `terraform apply -auto-approve`. Again due to the nature of Okta API endpoints are asynchronous processed, i.e. HTTP POST | PUT | DELETE calls are place on queue and HTTP 2XX response just means the request was received but the actual action may have not been updated in the backend.
 
 ## Resources
 
