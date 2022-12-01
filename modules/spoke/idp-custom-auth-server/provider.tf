@@ -6,7 +6,6 @@ terraform {
     }
   }
 }
-
 provider "okta" {
   org_name  = var.spoke_org_name
   base_url  = var.spoke_base_url
