@@ -51,7 +51,9 @@ module "spoke" {
   ]
 }
 
-# Eable if you like to configure the with Organization Authorization Server.
+# Eable if you like to configure with Organization Authorization Server. More details
+#   here: https://developer.okta.com/docs/concepts/auth-servers/#available-authorization-server-types
+#
 # module "spoke" {
 #   source              = "./modules/spoke/idp-org-auth-server"
 #   spoke_org_name      = var.okta_spoke_org_name
@@ -63,7 +65,7 @@ module "spoke" {
 #   ]
 # }
 
-# Create testenv that would be consume by the React Application located in react-app folder.
+# Create testenv file that would be consume by the React Application located in react-app folder.
 # NOTE: Performing 'terraform destory' will remove the testenv file, also.
 resource "local_file" "react_app_testenv" {
   content = templatefile("${path.module}/react-app-testenv.tftpl",
