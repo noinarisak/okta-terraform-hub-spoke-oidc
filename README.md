@@ -7,10 +7,12 @@ Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 
 TL;DR;
 
+- :warning: Do not use on production tenant.
 - Complete configuration of Hub & Spoke with OpenID Connect done via Terraform & Okta Provider.
 - Hub and Spoke with two custom attributes at the `appuser` level demonstrating JIT.
   - `favoriteColor` simple String Data Type.
   - `subscriptionLevel` simple String Enum Data.
+  - `favoriteMusic` simple String Data Type.
 
 ## End user flow sequence diagram
 
@@ -111,7 +113,7 @@ sequenceDiagram
 
 ## Tips & Gotchas
 
-- On "`terraform destroy -auto-approve`" you get the following error.
+- On "`terraform destroy -auto-approve`" you get the following error or something similar with in the user schema property.
 
   ```bash
   ...

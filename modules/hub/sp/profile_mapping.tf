@@ -8,7 +8,7 @@ resource "okta_profile_mapping" "idp_global" {
   target_id = data.okta_user_profile_mapping_source.user.id
 
   mappings {
-    id          = okta_app_user_schema_property.idp_favortie_color.index
+    id          = okta_app_user_schema_property.idp_favorite_color.index
     expression  = "appuser.favoriteColor == null ? \"None\" : appuser.favoriteColor"
     push_status = "PUSH"
   }
@@ -18,6 +18,16 @@ resource "okta_profile_mapping" "idp_global" {
     expression  = "appuser.subscriptionLevel == null ? \"None\" : appuser.subscriptionLevel"
     push_status = "PUSH"
   }
+
+  mappings {
+    id          = okta_app_user_schema_property.idp_favorite_music.index
+    expression  = "appuser.favoriteMusic == null ? \"None\" : appuser.favoriteMusic"
+    push_status = "PUSH"
+  }
+
+  depends_on = [
+    time_sleep.wait_30_seconds
+  ]
 }
 
 resource "okta_profile_mapping" "global_appuser" {
@@ -25,7 +35,7 @@ resource "okta_profile_mapping" "global_appuser" {
   target_id = okta_app_oauth.spa_application.id
 
   mappings {
-    id          = okta_app_user_schema_property.app_favortie_color.index
+    id          = okta_app_user_schema_property.app_favorite_color.index
     expression  = "user.favoriteColor == null ? \"None\" : user.favoriteColor"
     push_status = "PUSH"
   }
@@ -35,4 +45,14 @@ resource "okta_profile_mapping" "global_appuser" {
     expression  = "user.subscriptionLevel == null ? \"None\" : user.subscriptionLevel"
     push_status = "PUSH"
   }
+
+  mappings {
+    id          = okta_app_user_schema_property.app_favorite_music.index
+    expression  = "user.favoriteMusic == null ? \"None\" : user.favoriteMusic"
+    push_status = "PUSH"
+  }
+
+  depends_on = [
+    time_sleep.wait_30_seconds
+  ]
 }
