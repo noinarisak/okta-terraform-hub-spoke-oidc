@@ -5,9 +5,9 @@ Terraform Hub and Spoke with OIDC is my attempt reduce the complexity when it co
 configuration particular between two Okta tenants, one acting as
 Hub (Service Provider), and the other acting as the Spoke (Identity Provider).
 
-TL;DR;
+__TL;DR:__
 
-- :warning: Do not use on production tenant.
+- :warning: Do not use on production tenant.:warning:
 - Complete configuration of Hub & Spoke with OpenID Connect done via Terraform & Okta Provider.
 - Hub and Spoke with two custom attributes at the `appuser` level demonstrating JIT.
   - `favoriteColor` simple String Data Type.
