@@ -1,4 +1,4 @@
-resource "okta_app_user_schema_property" "favortie_color" {
+resource "okta_app_user_schema_property" "favorite_color" {
   app_id      = okta_app_oauth.web_application.id
   index       = "favoriteColor"
   title       = "favoriteColor"
