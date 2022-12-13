@@ -43,7 +43,12 @@ sequenceDiagram
 
 > **NOTE:** Assuming you have already created or have to two Okta tenants
 
-- `cp okta.auto.tfvars-sample okta.auto.tfvars`
+- Copy `okta.auto.tfvars-sample` to `okta.auto.tfvars` file.
+
+    ```bash
+    cp okta.auto.tfvars-sample okta.auto.tfvars
+    ```
+
 - Get your API Token and past it into the `okta.auto.tfvars` file.
 
     ```vim
