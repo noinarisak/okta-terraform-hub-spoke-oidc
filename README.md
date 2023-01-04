@@ -138,3 +138,4 @@ sequenceDiagram
 ## Resources
 
 - [Okta to Okta: Enterprise Identity Provider](https://developer.okta.com/docs/guides/add-an-external-idp/oktatookta/main/)
+- [Okta For Global Distributed Organizations](https://www.okta.com/resources/whitepaper/okta-for-global-distributed-organizations/)
