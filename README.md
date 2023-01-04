@@ -30,9 +30,11 @@ sequenceDiagram
 
 ## Requirements
 
-- Terraform v1.3.3.
-- Okta Provider v3.37.0.
-- Two Okta tenants, one representing the Hub and the other representing the Spoke.
+- Terraform - Install docs [here](https://learn.hashicorp.com/tutorials/terraform/install-cli) and introduction [here](https://www.terraform.io/intro/index.html).
+- Two Okta Free Developer Accounts/tenants, one representing the Hub and the other representing the Spoke.
+
+  > To create tenants register for a free account at [developer.okta.com](https://developer.okta.com). Select Create Free Account and fill in the forms to complete the registration process. Once you are done and logged in, you will see your Okta Developer Console.
+  
 - `tfenv` Optional, but recommended to manage different version of the `terraform` cli.
 - NodeJS v16.17.0 and with `npm`.
 - `nvm` Optional, but recommend to manage different version of node.
